@@ -1,0 +1,228 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "synonyimy",
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "classic.html"
+      }
+    }
+  },
+  "marketingAssets": {
+    "icon": "assets/icon.png"
+  },
+  "media": {
+    "dir": "assets"
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "forms": {
+    "queueAddForm": "/internal/form/queue/add",
+    "queueClearForm": "/internal/form/queue/clear",
+    "postCreateForm": "/internal/form/post-create",
+    "notificationsManageForm": "/internal/form/notifications/manage",
+    "notificationsSendSingleForm": "/internal/form/notifications/send-single",
+    "statsPlayersForm": "/internal/form/stats/players-count",
+    "commonWordsForm": "/internal/form/stats/common-words"
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "[queue] Add to queue",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/add"
+      },
+      {
+        "label": "[queue] Clear queue",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/clear"
+      },
+      {
+        "label": "[queue] Get size",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/size"
+      },
+      {
+        "label": "[queue] Peek next 3",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/peek"
+      },
+      {
+        "label": "[queue] Get contents via DM",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/dm"
+      },
+      {
+        "label": "[queue] Post next",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/post-next"
+      },
+      {
+        "label": "[notifications] Manage queue",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/notifications/manage"
+      },
+      {
+        "label": "[notifications] Dry run latest",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/notifications/dry-run-latest"
+      },
+      {
+        "label": "[notifications] Send single",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/notifications/send-single"
+      },
+      {
+        "label": "[stats] Opted into reminders",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/reminders-count"
+      },
+      {
+        "label": "[stats] Reminders by timezone",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/reminders-by-timezone"
+      },
+      {
+        "label": "[stats] Joined subreddit",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/joined-count"
+      },
+      {
+        "label": "[stats] Export last 30 days",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/export-last-30-days"
+      },
+      {
+        "label": "[stats] Players count for challenge",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/stats/players-count"
+      },
+      {
+        "label": "[stats] Total guesses (All Time)",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/stats/total-guesses"
+      },
+      {
+        "label": "[stats] Top 25 common words",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/stats/common-words"
+      },
+      {
+        "label": "[stats] Cancel common words job",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/stats/common-words/cancel"
+      },
+      {
+        "label": "[ops] Export all secret words via DM",
+        "forUserType": "moderator",
+        "location": "subreddit",
+        "endpoint": "/internal/menu/export-secret-words"
+      }
+    ]
+  },
+  "scheduler": {
+    "tasks": {
+      "create-new-challenge": {
+        "cron": "0 12 * * *",
+        "endpoint": "/internal/scheduler/create-new-challenge",
+        "data": {}
+      },
+      "create-new-challenge-retry-1": {
+        "cron": "5 12 * * *",
+        "endpoint": "/internal/scheduler/create-new-challenge-retry",
+        "data": {}
+      },
+      "create-new-challenge-retry-2": {
+        "cron": "15 12 * * *",
+        "endpoint": "/internal/scheduler/create-new-challenge-retry",
+        "data": {}
+      },
+      "create-new-challenge-retry-3": {
+        "cron": "30 12 * * *",
+        "endpoint": "/internal/scheduler/create-new-challenge-retry",
+        "data": {}
+      },
+      "update-post-data": {
+        "cron": "*/5 * * * *",
+        "endpoint": "/internal/scheduler/update-post-data",
+        "data": {}
+      },
+      "notifications-backup-sweep": {
+        "cron": "10 * * * *",
+        "endpoint": "/internal/scheduler/notifications-backup-sweep",
+        "data": {}
+      },
+      "notifications-send-group": "/internal/scheduler/notifications-send-group",
+      "notifications-enqueue-new-challenge": "/internal/scheduler/notifications-enqueue-new-challenge",
+      "common-words-aggregator": "/internal/scheduler/common-words-aggregator",
+      "common-words-watchdog": {
+        "cron": "*/10 * * * * *",
+        "endpoint": "/internal/scheduler/common-words-watchdog",
+        "data": {}
+      }
+    }
+  },
+  "triggers": {
+    "onCommentCreate": "/internal/triggers/on-comment-create"
+  },
+  "permissions": {
+    "reddit": {
+      "asUser": [
+        "SUBMIT_COMMENT",
+        "SUBSCRIBE_TO_SUBREDDIT"
+      ]
+    },
+    "http": {
+      "domains": [
+        "us.i.posthog.com",
+        "us-assets.i.posthog.com",
+        "generativelanguage.googleapis.com",
+        "raw.githubusercontent.com"
+      ],
+      "enable": true
+    }
+  },
+  "settings": {
+    "global": {
+      "GOOGLE_API_KEY": {
+        "label": "Google API Key",
+        "isSecret": true,
+        "type": "string"
+      }
+    },
+    "subreddit": {
+      "flairId": {
+        "type": "string",
+        "label": "Game Flair ID",
+        "helpText": "Flair ID for the game tag e.g. d7441bc0-a089-11f0-8b7d-16490fd4785c"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "dev": {
+    "subreddit": "synonyimy_dev"
+  }
+}

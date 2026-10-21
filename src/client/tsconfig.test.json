@@ -1,0 +1,22 @@
+// TypeScript config for all web view main thread code.
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Target the browser.
+    "customConditions": ["browser"],
+
+    "lib": ["DOM", "ES2023", "esnext.disposable"],
+
+    "types": ["@vitest/browser/providers/playwright"],
+
+    "outDir": "../../dist/types/client",
+
+    // React
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+
+    "tsBuildInfoFile": "../../dist/types/client/tsconfig.tsbuildinfo"
+  },
+  "include": ["**/*.test.ts", "**/*.test.tsx"],
+  "references": [{ "path": "../server" }, { "path": "../shared" }]
+}

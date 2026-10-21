@@ -1,0 +1,16 @@
+// TypeScript config for the offline word-data generator tools.
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": ["node"],
+    // The generator reuses the pure HCW2 codec from the server project, so the
+    // root must cover both trees.
+    "rootDir": "..",
+    "outDir": "../dist/types/tools",
+    "tsBuildInfoFile": "../dist/tools/tsconfig.tsbuildinfo",
+    "rewriteRelativeImportExtensions": true
+  },
+  "include": ["**/*", "**/*.json", "../src/server/core/wordDataFormat.ts"],
+  "references": []
+}

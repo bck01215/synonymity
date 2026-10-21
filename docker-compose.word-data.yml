@@ -1,0 +1,22 @@
+name: synonymity-word-data
+
+services:
+  pgvector:
+    image: pgvector/pgvector:0.7.4-pg15
+    environment:
+      POSTGRES_DB: synonymity
+      POSTGRES_PASSWORD: synonymity-local
+      POSTGRES_USER: synonymity
+    ports:
+      - '127.0.0.1:${WORD_DATA_DB_PORT:-55432}:5432'
+    volumes:
+      - ./word-data/${WORD_DATA_VERSION:-v1}:/data:ro
+      - synonymity-word-data-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U synonymity -d synonymity']
+      interval: 2s
+      timeout: 5s
+      retries: 60
+
+volumes:
+  synonymity-word-data-pg:

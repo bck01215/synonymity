@@ -1,0 +1,17 @@
+// TypeScript config for all Devvit server code.
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+
+    "types": ["node"],
+
+    "rootDir": ".",
+
+    "outDir": "../../dist/types/server",
+
+    "tsBuildInfoFile": "../../dist/types/server/tsconfig.tsbuildinfo"
+  },
+  "include": ["**/*.test.ts", "test/setupTests.ts", "../../vitest.config.ts"],
+  "references": [{ "path": "../shared" }]
+}

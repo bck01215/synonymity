@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+
+/* Ensure the app fully fills the iframe and cannot scroll */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Hide any scrollbars if a browser tries to render them */
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
